@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/characters")
 public class CharacterController {
 
-    @PostMapping
+    @PostMapping()
     public ResponseEntity<CreatedCharacterDto> createCharacter(@RequestBody @Valid CreateCharacterDto request) {
+        System.out.println("CREATE CHAR");
         return null; /* TODO */
     }
 

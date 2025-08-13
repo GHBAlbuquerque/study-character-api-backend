@@ -1,10 +1,10 @@
 package com.neo.characterapi.adapters.dto.request;
 
+import com.neo.characterapi.adapters.dto.validators.annotations.ValidCharacter;
 import com.neo.characterapi.domain.enums.JobType;
-import com.neo.characterapi.domain.valueobjects.JobAttributes;
 
+@ValidCharacter
 public record CreateCharacterDto (
         String name,
-        JobType jobType,
-        JobAttributes jobAttributes
+        String job
 ){}
