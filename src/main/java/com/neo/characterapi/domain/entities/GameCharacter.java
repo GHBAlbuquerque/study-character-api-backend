@@ -34,6 +34,30 @@ public class GameCharacter {
         this.id = id;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public JobType getJobType() {
+        return jobType;
+    }
+
+    public JobAttributes getJobAttributes() {
+        return jobAttributes;
+    }
+
+    public CharacterStatus getCharacterStatus() {
+        return characterStatus;
+    }
+
+    public Integer getCurrentHealth() {
+        return currentHealth;
+    }
+
     public boolean isAlive(){
         return this.characterStatus == CharacterStatus.ALIVE;
     }

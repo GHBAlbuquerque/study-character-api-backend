@@ -10,5 +10,8 @@ public record DetailedGameCharacterDto(
         JobType jobType,
         JobAttributes jobAttributes,
         CharacterStatus characterStatus,
-        Integer currentHealth
-){}
+        Integer currentHealth,
+        String attackModifierDescription,
+        String speedModifierDescription
+) {
+}

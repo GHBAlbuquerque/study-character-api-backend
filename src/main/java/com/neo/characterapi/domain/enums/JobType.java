@@ -21,6 +21,18 @@ public enum JobType {
         this.speedModifierDescription = speedModifierDescription;
     }
 
+    public JobAttributes getBaseAttributes() {
+        return baseAttributes;
+    }
+
+    public String getAttackModifierDescription() {
+        return attackModifierDescription;
+    }
+
+    public String getSpeedModifierDescription() {
+        return speedModifierDescription;
+    }
+
     public static List<String> names() {
         return Arrays.stream(JobType.values()).map(Enum::name).toList();
     }

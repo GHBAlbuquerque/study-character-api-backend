@@ -1,7 +1,7 @@
 package com.neo.characterapi.application.repositories;
 
 import com.neo.characterapi.domain.entities.GameCharacter;
-import com.neo.characterapi.domain.interfaces.repositories.CharacterRepository;
+import com.neo.characterapi.domain.interfaces.repositories.GameCharacterRepository;
 
 import java.util.Collection;
 import java.util.Map;
@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
-public class InMemoryCharacterRepository implements CharacterRepository {
+public class InMemoryGameCharacterRepository implements GameCharacterRepository {
 
     private final AtomicLong lastUsedId= new AtomicLong(0);
     private final Map<Long, GameCharacter> store = new ConcurrentHashMap<>();

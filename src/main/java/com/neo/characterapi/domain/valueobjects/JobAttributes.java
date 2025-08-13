@@ -35,4 +35,16 @@ public class JobAttributes {
     public Integer getHealth() {
         return health;
     }
+
+    public Integer getStrength() {
+        return strength;
+    }
+
+    public Integer getDexterity() {
+        return dexterity;
+    }
+
+    public Integer getIntelligence() {
+        return intelligence;
+    }
 }

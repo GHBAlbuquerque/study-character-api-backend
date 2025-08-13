@@ -4,6 +4,6 @@ import com.neo.characterapi.domain.entities.GameCharacter;
 
 import java.util.List;
 
-public interface GetAllCharactersUseCase {
+public interface GetAllGameCharactersUseCase {
     List<GameCharacter> execute();
 }
