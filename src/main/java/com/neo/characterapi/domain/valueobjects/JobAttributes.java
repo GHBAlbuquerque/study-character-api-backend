@@ -31,4 +31,8 @@ public class JobAttributes {
             case MAGE -> dexterity * 0.4 + strength * 0.1;
         };
     }
+
+    public Integer getHealth() {
+        return health;
+    }
 }

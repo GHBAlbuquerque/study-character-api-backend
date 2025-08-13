@@ -1,5 +1,6 @@
 package com.neo.characterapi.domain.entities;
 
+import com.neo.characterapi.domain.enums.CharacterStatus;
 import com.neo.characterapi.domain.enums.JobType;
 import com.neo.characterapi.domain.valueobjects.JobAttributes;
 
@@ -9,43 +10,49 @@ public class Character {
     private String name;
     private JobType jobType;
     private JobAttributes jobAttributes;
+    private CharacterStatus characterStatus;
+    private Integer currentHealth;
 
     public Character(Long id, String name, JobType jobType, JobAttributes jobAttributes) {
         this.id = id;
         this.name = name;
         this.jobType = jobType;
         this.jobAttributes = jobAttributes;
+        this.characterStatus = CharacterStatus.ALIVE;
+        this.currentHealth = jobAttributes.getHealth();
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public Character(String name, JobType jobType, JobAttributes jobAttributes) {
         this.name = name;
-    }
-
-    public JobType getJobType() {
-        return jobType;
-    }
-
-    public void setJobType(JobType jobType) {
         this.jobType = jobType;
-    }
-
-    public JobAttributes getJobAttributes() {
-        return jobAttributes;
-    }
-
-    public void setJobAttributes(JobAttributes jobAttributes) {
         this.jobAttributes = jobAttributes;
+        this.characterStatus = CharacterStatus.ALIVE;
+        this.currentHealth = jobAttributes.getHealth();
+    }
+
+    public boolean isAlive(){
+        return this.characterStatus == CharacterStatus.ALIVE;
+    }
+
+    public boolean isDead() {
+        return this.characterStatus == CharacterStatus.DEAD;
+    }
+
+    public void killCharacter(){
+        this.currentHealth = 0;
+        this.characterStatus = CharacterStatus.DEAD;
+    }
+
+    public void reviveCharacter(){
+        this.currentHealth = this.jobAttributes.getHealth();
+        this.characterStatus = CharacterStatus.ALIVE;
+    }
+
+    public void takeDamage(Integer damage){
+        this.currentHealth -= damage;
+
+        if(this.currentHealth <= 0){
+            this.killCharacter();
+        }
     }
 }
