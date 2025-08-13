@@ -4,7 +4,7 @@ import com.neo.characterapi.domain.enums.CharacterStatus;
 import com.neo.characterapi.domain.enums.JobType;
 import com.neo.characterapi.domain.valueobjects.JobAttributes;
 
-public class Character {
+public class GameCharacter {
 
     private Long id;
     private String name;
@@ -13,7 +13,7 @@ public class Character {
     private CharacterStatus characterStatus;
     private Integer currentHealth;
 
-    public Character(Long id, String name, JobType jobType, JobAttributes jobAttributes) {
+    public GameCharacter(Long id, String name, JobType jobType, JobAttributes jobAttributes) {
         this.id = id;
         this.name = name;
         this.jobType = jobType;
@@ -22,12 +22,16 @@ public class Character {
         this.currentHealth = jobAttributes.getHealth();
     }
 
-    public Character(String name, JobType jobType, JobAttributes jobAttributes) {
+    public GameCharacter(String name, JobType jobType, JobAttributes jobAttributes) {
         this.name = name;
         this.jobType = jobType;
         this.jobAttributes = jobAttributes;
         this.characterStatus = CharacterStatus.ALIVE;
         this.currentHealth = jobAttributes.getHealth();
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public boolean isAlive(){

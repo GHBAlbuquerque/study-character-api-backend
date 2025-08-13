@@ -17,23 +17,23 @@ import org.springframework.context.annotation.Configuration;
 public class BeanDeclaration {
 
     @Bean
-    public CreateCharacterUseCase createNotificationUseCase() {
-        return new CreateCharacterUseCaseImpl();
+    public CreateCharacterUseCase createNotificationUseCase(CharacterRepository characterRepository) {
+        return new CreateCharacterUseCaseImpl(characterRepository);
     }
 
     @Bean
-    public GetAllCharactersUseCase getAllCharactersUseCase() {
-        return new GetAllCharacterUseCaseImpl();
+    public GetAllCharactersUseCase getAllCharactersUseCase(CharacterRepository characterRepository) {
+        return new GetAllCharacterUseCaseImpl(characterRepository);
     }
 
     @Bean
-    public GetCharacterDetailsUseCase getCharacterDetailsUseCase() {
-        return new GetCharacterDetailsUseCaseImpl();
+    public GetCharacterDetailsUseCase getCharacterDetailsUseCase(CharacterRepository characterRepository) {
+        return new GetCharacterDetailsUseCaseImpl(characterRepository);
     }
 
     @Bean
-    public BattleUseCase battleUseCase() {
-        return new BattleUseCaseImpl();
+    public BattleUseCase battleUseCase(CharacterRepository characterRepository) {
+        return new BattleUseCaseImpl(characterRepository);
     }
 
     @Bean

@@ -50,8 +50,8 @@ public class ExceptionControllerHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
     }
 
-    /*@ExceptionHandler(value = {EntityNotFoundException.class})
-    public ResponseEntity<ExceptionDetails> resourceException(EntityNotFoundException ex, WebRequest request) {
+    @ExceptionHandler(value = {CharacterNotFoundException.class})
+    public ResponseEntity<ExceptionDetails> resourceException(CharacterNotFoundException ex, WebRequest request) {
 
         final var message = new ExceptionDetails(
                 "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
@@ -59,11 +59,12 @@ public class ExceptionControllerHandler extends ResponseEntityExceptionHandler {
                 ex.getMessage(),
                 HttpStatus.NOT_FOUND.value(),
                 new Date(),
-                ex.getErrors());
+                null);
 
         return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
     }
 
+    /*
     @ExceptionHandler(value = {CreateEntityException.class})
     public ResponseEntity<ExceptionDetails> resourceException(CreateEntityException ex, WebRequest request) {
 

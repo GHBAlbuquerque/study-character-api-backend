@@ -4,7 +4,7 @@ import com.neo.characterapi.domain.enums.CharacterStatus;
 import com.neo.characterapi.domain.enums.JobType;
 import com.neo.characterapi.domain.valueobjects.JobAttributes;
 
-public record DetailedCharacterDto(
+public record DetailedGameCharacterDto(
         Long id,
         String name,
         JobType jobType,

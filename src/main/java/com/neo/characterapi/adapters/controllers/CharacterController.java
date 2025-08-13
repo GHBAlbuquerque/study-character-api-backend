@@ -1,8 +1,8 @@
 package com.neo.characterapi.adapters.controllers;
 
-import com.neo.characterapi.adapters.dto.request.CreateCharacterDto;
-import com.neo.characterapi.adapters.dto.response.CreatedCharacterDto;
-import com.neo.characterapi.adapters.dto.response.SimpleCharacterDto;
+import com.neo.characterapi.adapters.dto.request.CreateGameCharacterDto;
+import com.neo.characterapi.adapters.dto.response.CreatedGameCharacterDto;
+import com.neo.characterapi.adapters.dto.response.SimpleGameCharacterDto;
 import com.neo.characterapi.domain.interfaces.usecases.CreateCharacterUseCase;
 import com.neo.characterapi.domain.interfaces.usecases.GetAllCharactersUseCase;
 import com.neo.characterapi.domain.interfaces.usecases.GetCharacterDetailsUseCase;
@@ -27,18 +27,18 @@ public class CharacterController {
     }
 
     @PostMapping()
-    public ResponseEntity<CreatedCharacterDto> createCharacter(@RequestBody @Valid CreateCharacterDto request) {
+    public ResponseEntity<CreatedGameCharacterDto> createCharacter(@RequestBody @Valid CreateGameCharacterDto request) {
         System.out.println("CREATE CHAR");
         return null; /* TODO */
     }
 
     @GetMapping
-    public ResponseEntity<SimpleCharacterDto> getAllCharacters() {
+    public ResponseEntity<SimpleGameCharacterDto> getAllCharacters() {
         return null; /* TODO */
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SimpleCharacterDto> getCharacterDetails(@PathVariable Long id) {
+    public ResponseEntity<SimpleGameCharacterDto> getCharacterDetails(@PathVariable Long id) {
         return null; /* TODO */
     }
 

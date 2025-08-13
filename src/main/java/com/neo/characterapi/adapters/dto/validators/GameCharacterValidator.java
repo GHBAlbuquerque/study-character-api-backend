@@ -1,7 +1,7 @@
 package com.neo.characterapi.adapters.dto.validators;
 
-import com.neo.characterapi.adapters.dto.request.CreateCharacterDto;
-import com.neo.characterapi.adapters.dto.validators.annotations.ValidCharacter;
+import com.neo.characterapi.adapters.dto.request.CreateGameCharacterDto;
+import com.neo.characterapi.adapters.dto.validators.annotations.ValidGameCharacter;
 import com.neo.characterapi.domain.enums.JobType;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -9,7 +9,7 @@ import jakarta.validation.ConstraintValidatorContext;
 import java.util.List;
 import java.util.Objects;
 
-public class CharacterValidator implements ConstraintValidator<ValidCharacter, CreateCharacterDto> {
+public class GameCharacterValidator implements ConstraintValidator<ValidGameCharacter, CreateGameCharacterDto> {
 
     private static final String REGEX = "^[A-Za-z_]+$";
     private static final Integer MIN_LENGTH = 4;
@@ -17,7 +17,7 @@ public class CharacterValidator implements ConstraintValidator<ValidCharacter, C
     private static final List<String> JOB_NAMES = JobType.names();
 
     @Override
-    public boolean isValid(CreateCharacterDto request, ConstraintValidatorContext context) {
+    public boolean isValid(CreateGameCharacterDto request, ConstraintValidatorContext context) {
         context.disableDefaultConstraintViolation();
 
         final Boolean isNameValid = validateName(request.name(), context);
