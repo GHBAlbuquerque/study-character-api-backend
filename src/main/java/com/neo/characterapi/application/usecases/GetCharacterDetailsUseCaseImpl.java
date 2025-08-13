@@ -2,16 +2,16 @@ package com.neo.characterapi.application.usecases;
 
 import com.neo.characterapi.application.exceptions.CharacterNotFoundException;
 import com.neo.characterapi.domain.entities.GameCharacter;
-import com.neo.characterapi.domain.interfaces.repositories.CharacterRepository;
-import com.neo.characterapi.domain.interfaces.usecases.GetCharacterDetailsUseCase;
+import com.neo.characterapi.domain.interfaces.repositories.GameCharacterRepository;
+import com.neo.characterapi.domain.interfaces.usecases.GetGameCharacterDetailsUseCase;
 
 import java.util.Optional;
 
-public class GetCharacterDetailsUseCaseImpl implements GetCharacterDetailsUseCase {
+public class GetCharacterDetailsUseCaseImpl implements GetGameCharacterDetailsUseCase {
 
-    private final CharacterRepository characterRepository;
+    private final GameCharacterRepository characterRepository;
 
-    public GetCharacterDetailsUseCaseImpl(CharacterRepository characterRepository) {
+    public GetCharacterDetailsUseCaseImpl(GameCharacterRepository characterRepository) {
         this.characterRepository = characterRepository;
     }
 

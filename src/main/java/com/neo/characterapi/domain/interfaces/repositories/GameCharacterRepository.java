@@ -10,4 +10,6 @@ public interface CharacterRepository {
     Long save(GameCharacter character);
     Optional<GameCharacter> findbyId(Long id);
     Collection<GameCharacter> findAll();
+
+    //TODO exists by name?
 }

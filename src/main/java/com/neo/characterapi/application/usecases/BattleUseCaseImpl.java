@@ -1,14 +1,14 @@
 package com.neo.characterapi.application.usecases;
 
-import com.neo.characterapi.domain.interfaces.repositories.CharacterRepository;
+import com.neo.characterapi.domain.interfaces.repositories.GameCharacterRepository;
 import com.neo.characterapi.domain.interfaces.usecases.BattleUseCase;
 import com.neo.characterapi.domain.valueobjects.BattleResult;
 
 public class BattleUseCaseImpl implements BattleUseCase {
 
-    private final CharacterRepository characterRepository;
+    private final GameCharacterRepository characterRepository;
 
-    public BattleUseCaseImpl(CharacterRepository characterRepository) {
+    public BattleUseCaseImpl(GameCharacterRepository characterRepository) {
         this.characterRepository = characterRepository;
     }
 
