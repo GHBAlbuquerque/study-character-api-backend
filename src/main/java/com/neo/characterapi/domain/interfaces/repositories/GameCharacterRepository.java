@@ -10,6 +10,5 @@ public interface GameCharacterRepository {
     Long save(GameCharacter character);
     Optional<GameCharacter> findbyId(Long id);
     Collection<GameCharacter> findAll();
-
-    //TODO exists by name?
+    Boolean existsByName(String name);
 }

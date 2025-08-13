@@ -32,4 +32,9 @@ public class InMemoryGameCharacterRepository implements GameCharacterRepository 
     public Collection<GameCharacter> findAll() {
         return store.values();
     }
+
+    @Override
+    public Boolean existsByName(String name) {
+        return store.values().stream().anyMatch(gameCharacter -> gameCharacter.getName().equals(name));
+    }
 }

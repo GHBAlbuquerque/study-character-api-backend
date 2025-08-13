@@ -64,20 +64,20 @@ public class ExceptionControllerHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
     }
 
-    /*
-    @ExceptionHandler(value = {CreateEntityException.class})
-    public ResponseEntity<ExceptionDetails> resourceException(CreateEntityException ex, WebRequest request) {
+
+    @ExceptionHandler(value = {CreateCharacterException.class})
+    public ResponseEntity<ExceptionDetails> resourceException(CreateCharacterException ex, WebRequest request) {
 
         final var message = new ExceptionDetails(
                 "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
-                "Couldn't create entity on database. Try again with different values.",
+                "Couldn't create the character. Try again with different values.",
                 ex.getMessage(),
                 HttpStatus.BAD_REQUEST.value(),
                 new Date(),
-                ex.getErrors());
+                null);
 
         return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
-    }*/
+    }
 
 
     @ExceptionHandler(Exception.class)
