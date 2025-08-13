@@ -1,4 +1,12 @@
 package com.neo.characterapi.application.usecases;
 
-public class GetCharacterDetailsUseCaseImpl {
+import com.neo.characterapi.domain.interfaces.usecases.GetCharacterDetailsUseCase;
+
+public class GetCharacterDetailsUseCaseImpl implements GetCharacterDetailsUseCase {
+
+    @Override
+    public Character execute(Long id) {
+        //TODO
+        return null;
+    }
 }

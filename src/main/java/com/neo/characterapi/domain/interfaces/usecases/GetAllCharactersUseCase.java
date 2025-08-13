@@ -1,4 +1,4 @@
-package com.neo.characterapi.domain.interfaces;
+package com.neo.characterapi.domain.interfaces.usecases;
 
 import java.util.List;
 
