@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class InMemoryGameCharacterRepository implements GameCharacterRepository {
 
-    private final AtomicLong lastUsedId= new AtomicLong(0);
+    private final AtomicLong lastUsedId = new AtomicLong(0);
     private final Map<Long, GameCharacter> store = new ConcurrentHashMap<>();
 
     @Override

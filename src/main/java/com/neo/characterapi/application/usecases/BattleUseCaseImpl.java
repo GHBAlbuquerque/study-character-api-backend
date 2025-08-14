@@ -3,9 +3,8 @@ package com.neo.characterapi.application.usecases;
 import com.neo.characterapi.application.exceptions.InvalidBattleException;
 import com.neo.characterapi.application.messages.BattleLogGenerator;
 import com.neo.characterapi.domain.entities.GameCharacter;
-import com.neo.characterapi.domain.interfaces.repositories.GameCharacterRepository;
-import com.neo.characterapi.domain.interfaces.usecases.GetGameCharacterDetailsUseCase;
 import com.neo.characterapi.domain.interfaces.usecases.BattleUseCase;
+import com.neo.characterapi.domain.interfaces.usecases.GetGameCharacterDetailsUseCase;
 import com.neo.characterapi.domain.valueobjects.BattleResult;
 
 import java.util.ArrayList;
@@ -14,24 +13,22 @@ import java.util.Random;
 
 public class BattleUseCaseImpl implements BattleUseCase {
 
-    private final GameCharacterRepository characterRepository;
     private final GetGameCharacterDetailsUseCase getGameCharacterDetailsUseCase;
 
-    public BattleUseCaseImpl(GameCharacterRepository characterRepository, GetGameCharacterDetailsUseCase getGameCharacterDetailsUseCase) {
-        this.characterRepository = characterRepository;
+    public BattleUseCaseImpl(GetGameCharacterDetailsUseCase getGameCharacterDetailsUseCase) {
         this.getGameCharacterDetailsUseCase = getGameCharacterDetailsUseCase;
     }
 
     @Override
     public BattleResult execute(Long firstCharacterId, Long secondCharacterId) {
-        if(firstCharacterId.equals(secondCharacterId)) {
+        if (firstCharacterId.equals(secondCharacterId)) {
             throw new InvalidBattleException("Characters cannot be the same. Please chose a different opponent.");
         }
 
         final GameCharacter character1 = getGameCharacterDetailsUseCase.execute(firstCharacterId);
         final GameCharacter character2 = getGameCharacterDetailsUseCase.execute(secondCharacterId);
 
-        if(isAnyCharacterDead(character1, character2)) {
+        if (isAnyCharacterDead(character1, character2)) {
             throw new InvalidBattleException("One of the characters is dead, battle cannot continue.");
         }
 
@@ -43,7 +40,7 @@ public class BattleUseCaseImpl implements BattleUseCase {
         GameCharacter loser = null;
 
         battleLog.add(BattleLogGenerator.generateBattleInitiatedLog(character1, character2));
-        while(character1.isAlive() && character2.isAlive()) {
+        while (character1.isAlive() && character2.isAlive()) {
 
             GameCharacter first, second;
 
@@ -65,7 +62,7 @@ public class BattleUseCaseImpl implements BattleUseCase {
             } while (true);
 
             initiateTurn(first, second, battleLog, random);
-            if(!second.isAlive()) {
+            if (!second.isAlive()) {
                 battleLog.add(BattleLogGenerator.generateBattleFinishedLog(first));
                 winner = first;
                 loser = second;
@@ -73,7 +70,7 @@ public class BattleUseCaseImpl implements BattleUseCase {
             }
 
             initiateTurn(second, first, battleLog, random);
-            if(!first.isAlive()) {
+            if (!first.isAlive()) {
                 battleLog.add(BattleLogGenerator.generateBattleFinishedLog(second));
                 winner = second;
                 loser = first;

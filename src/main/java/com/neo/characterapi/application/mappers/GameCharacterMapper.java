@@ -10,18 +10,18 @@ import com.neo.characterapi.domain.valueobjects.JobAttributes;
 
 public class GameCharacterMapper {
 
-    public static GameCharacter toGameCharacter(final CreateGameCharacterDto createDto) {
+    public static GameCharacter toGameCharacter(CreateGameCharacterDto createDto) {
         final JobType jobType = JobType.valueOf(createDto.job().toUpperCase());
         final JobAttributes baseAttributes = jobType.getBaseAttributes();
 
         return new GameCharacter(createDto.name(), jobType,
                 new JobAttributes(baseAttributes.getHealth(),
-                baseAttributes.getStrength(),
-                baseAttributes.getDexterity(),
-                baseAttributes.getIntelligence()));
+                        baseAttributes.getStrength(),
+                        baseAttributes.getDexterity(),
+                        baseAttributes.getIntelligence()));
     }
 
-    public static CreatedGameCharacterDto toCreatedGameCharacterDto(final GameCharacter character) {
+    public static CreatedGameCharacterDto toCreatedGameCharacterDto(GameCharacter character) {
         return new CreatedGameCharacterDto(
                 character.getId(),
                 character.getName(),
@@ -29,7 +29,7 @@ public class GameCharacterMapper {
         );
     }
 
-    public static DetailedGameCharacterDto toDetailedGameCharacterDto(final GameCharacter character) {
+    public static DetailedGameCharacterDto toDetailedGameCharacterDto(GameCharacter character) {
         final JobType jobType = character.getJobType();
 
         return new DetailedGameCharacterDto(
@@ -44,7 +44,7 @@ public class GameCharacterMapper {
         );
     }
 
-    public static SimpleGameCharacterDto toSimpleGameCharacterDto(final GameCharacter character) {
+    public static SimpleGameCharacterDto toSimpleGameCharacterDto(GameCharacter character) {
         return new SimpleGameCharacterDto(
                 character.getId(),
                 character.getName(),

@@ -8,4 +8,5 @@ public record SimpleGameCharacterDto(
         String name,
         JobType jobType,
         CharacterStatus characterStatus
-){}
+) {
+}

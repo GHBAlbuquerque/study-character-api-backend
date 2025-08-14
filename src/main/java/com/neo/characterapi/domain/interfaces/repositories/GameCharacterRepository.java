@@ -8,7 +8,10 @@ import java.util.Optional;
 public interface GameCharacterRepository {
 
     Long save(GameCharacter character);
+
     Optional<GameCharacter> findbyId(Long id);
+
     Collection<GameCharacter> findAll();
+
     Boolean existsByName(String name);
 }

@@ -6,4 +6,5 @@ import com.neo.characterapi.adapters.dto.validators.annotations.ValidGameCharact
 public record CreateGameCharacterDto(
         String name,
         String job
-){}
+) {
+}

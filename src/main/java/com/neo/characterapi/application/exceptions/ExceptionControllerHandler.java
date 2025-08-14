@@ -1,7 +1,6 @@
 package com.neo.characterapi.application.exceptions;
 
 import com.neo.characterapi.application.exceptions.model.ExceptionDetails;
-import jakarta.validation.ConstraintViolationException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpHeaders;
@@ -40,7 +39,6 @@ public class ExceptionControllerHandler extends ResponseEntityExceptionHandler {
         });
 
         final var message = new ExceptionDetails(
-                "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
                 "Method Argument Not Valid",
                 "Invalid arguments.",
                 HttpStatus.BAD_REQUEST.value(),
@@ -54,7 +52,6 @@ public class ExceptionControllerHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<ExceptionDetails> resourceException(CharacterNotFoundException ex, WebRequest request) {
 
         final var message = new ExceptionDetails(
-                "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
                 "The requested resource was not found.",
                 ex.getMessage(),
                 HttpStatus.NOT_FOUND.value(),
@@ -69,7 +66,6 @@ public class ExceptionControllerHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<ExceptionDetails> resourceException(CreateCharacterException ex, WebRequest request) {
 
         final var message = new ExceptionDetails(
-                "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
                 "Couldn't create the character. Try again with different values.",
                 ex.getMessage(),
                 HttpStatus.BAD_REQUEST.value(),
@@ -83,7 +79,6 @@ public class ExceptionControllerHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<ExceptionDetails> resourceException(InvalidBattleException ex, WebRequest request) {
 
         final var message = new ExceptionDetails(
-                "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
                 "There was a problem with the battle. Try again with different values.",
                 ex.getMessage(),
                 HttpStatus.BAD_REQUEST.value(),
@@ -102,7 +97,6 @@ public class ExceptionControllerHandler extends ResponseEntityExceptionHandler {
         var status = HttpStatus.INTERNAL_SERVER_ERROR;
 
         final var message = new ExceptionDetails(
-                "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500",
                 "Internal server error. Please contact the admin.",
                 "Unindentified error.",
                 status.value(),

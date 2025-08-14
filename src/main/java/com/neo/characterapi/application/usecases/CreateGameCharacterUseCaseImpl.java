@@ -15,7 +15,7 @@ public class CreateGameCharacterUseCaseImpl implements CreateGameCharacterUseCas
 
     @Override
     public GameCharacter execute(GameCharacter character) {
-        if(characterRepository.existsByName(character.getName())) {
+        if (characterRepository.existsByName(character.getName())) {
             throw new CreateCharacterException(String.format("Character with name %s already exists", character.getName()));
         }
 

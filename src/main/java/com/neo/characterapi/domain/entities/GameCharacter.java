@@ -62,7 +62,7 @@ public class GameCharacter {
         return currentHealth;
     }
 
-    public boolean isAlive(){
+    public boolean isAlive() {
         return this.characterStatus == CharacterStatus.ALIVE;
     }
 
@@ -70,30 +70,30 @@ public class GameCharacter {
         return this.characterStatus == CharacterStatus.DEAD;
     }
 
-    public void killCharacter(){
+    public void killCharacter() {
         this.currentHealth = 0;
         this.characterStatus = CharacterStatus.DEAD;
     }
 
-    public void reviveCharacter(){
+    public void reviveCharacter() {
         this.currentHealth = this.jobAttributes.getHealth();
         this.characterStatus = CharacterStatus.ALIVE;
     }
 
-    public void takeDamage(Integer damage){// convert Double → int
+    public void takeDamage(Integer damage) {// convert Double → int
         this.currentHealth -= damage;
 
-        if(this.currentHealth <= 0){
+        if (this.currentHealth <= 0) {
             this.currentHealth = 0;
             this.killCharacter();
         }
     }
 
-    public Double getSpeed(){
+    public Double getSpeed() {
         return this.getJobAttributes().calculateSpeed(this.getJobType());
     }
 
-    public Double getAttack(){
+    public Double getAttack() {
         return this.getJobAttributes().calculateAttack(this.getJobType());
     }
 }

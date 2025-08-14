@@ -16,7 +16,7 @@ public class JobAttributes {
         this.intelligence = intelligence;
     }
 
-    public Double calculateAttack(JobType jobtype){
+    public Double calculateAttack(JobType jobtype) {
         return switch (jobtype) {
             case WARRIOR -> strength * 0.8 + dexterity * 0.2;
             case THIEF -> strength * 0.25 + dexterity + intelligence * 0.25;
@@ -24,7 +24,7 @@ public class JobAttributes {
         };
     }
 
-    public Double calculateSpeed(JobType jobtype){
+    public Double calculateSpeed(JobType jobtype) {
         return switch (jobtype) {
             case WARRIOR -> dexterity * 0.6 + intelligence * 0.2;
             case THIEF -> dexterity * 0.8;

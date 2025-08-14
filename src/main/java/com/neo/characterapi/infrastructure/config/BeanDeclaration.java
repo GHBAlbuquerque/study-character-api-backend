@@ -32,8 +32,8 @@ public class BeanDeclaration {
     }
 
     @Bean
-    public BattleUseCase battleUseCase(GameCharacterRepository gameCharacterRepository, GetGameCharacterDetailsUseCase getCharacterDetailsUseCase) {
-        return new BattleUseCaseImpl(gameCharacterRepository, getCharacterDetailsUseCase);
+    public BattleUseCase battleUseCase(GetGameCharacterDetailsUseCase getCharacterDetailsUseCase) {
+        return new BattleUseCaseImpl(getCharacterDetailsUseCase);
     }
 
     @Bean

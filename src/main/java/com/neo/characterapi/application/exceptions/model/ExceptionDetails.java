@@ -1,13 +1,10 @@
 package com.neo.characterapi.application.exceptions.model;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ExceptionDetails {
-
-    private String type;
 
     private String title;
 
@@ -19,17 +16,12 @@ public class ExceptionDetails {
 
     private Map<String, List<String>> errors;
 
-    public ExceptionDetails(String type, String title, String detail, Integer status, Date date, Map<String, List<String>> errors) {
-        this.type = type;
+    public ExceptionDetails(String title, String detail, Integer status, Date date, Map<String, List<String>> errors) {
         this.title = title;
         this.detail = detail;
         this.status = status;
         this.date = date;
         this.errors = errors;
-    }
-
-    public String getType() {
-        return type;
     }
 
     public String getTitle() {
