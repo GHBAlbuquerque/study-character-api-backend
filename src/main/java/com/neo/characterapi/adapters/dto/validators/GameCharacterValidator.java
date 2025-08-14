@@ -31,6 +31,7 @@ public class GameCharacterValidator implements ConstraintValidator<ValidGameChar
 
         if (!name.matches(REGEX)) {
             context.buildConstraintViolationWithTemplate("Name must contain only letters or '_' (underscore) characters.").addConstraintViolation();
+            return false;
         }
 
         if (name.length() < MIN_LENGTH) {
