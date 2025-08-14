@@ -3,5 +3,5 @@ package com.neo.characterapi.domain.interfaces.usecases;
 import com.neo.characterapi.domain.valueobjects.BattleResult;
 
 public interface BattleUseCase {
-    BattleResult execute(Long characterId1, Long characterId2);
+    BattleResult execute(Long firstCharacterId, Long secondCharacterId);
 }

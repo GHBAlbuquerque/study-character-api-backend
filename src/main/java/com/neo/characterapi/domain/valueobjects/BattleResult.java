@@ -1,11 +1,12 @@
 package com.neo.characterapi.domain.valueobjects;
 
+import com.neo.characterapi.domain.entities.GameCharacter;
+
 import java.util.List;
 
 public record BattleResult (
-    Long winnerId,
-    Long loserId,
-    int winnerRemainingHp,
+    GameCharacter winner,
+    GameCharacter loser,
     List<String> battleLog
 ) {}
 

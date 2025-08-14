@@ -46,6 +46,10 @@ public class GameCharacter {
         return jobType;
     }
 
+    public String getJob() {
+        return jobType.name();
+    }
+
     public JobAttributes getJobAttributes() {
         return jobAttributes;
     }
@@ -76,11 +80,21 @@ public class GameCharacter {
         this.characterStatus = CharacterStatus.ALIVE;
     }
 
-    public void takeDamage(Integer damage){
-        this.currentHealth -= damage;
+    public void takeDamage(Double damage){
+        final int damageInt = damage.intValue(); // convert Double → int
+        this.currentHealth -= damageInt;
 
         if(this.currentHealth <= 0){
+            this.currentHealth = 0;
             this.killCharacter();
         }
+    }
+
+    public Double getSpeed(){
+        return this.getJobAttributes().calculateSpeed(this.getJobType());
+    }
+
+    public Double getAttack(){
+        return this.getJobAttributes().calculateSpeed(this.getJobType());
     }
 }

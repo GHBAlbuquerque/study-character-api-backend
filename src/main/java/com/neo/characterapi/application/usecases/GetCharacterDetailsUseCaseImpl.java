@@ -20,7 +20,7 @@ public class GetCharacterDetailsUseCaseImpl implements GetGameCharacterDetailsUs
         final Optional<GameCharacter> optional = characterRepository.findbyId(id);
 
         if (optional.isEmpty()) {
-            throw new CharacterNotFoundException(String.format("Couldn't find GameCharacter with is %s ", id));
+            throw new CharacterNotFoundException(String.format("Couldn't find GameCharacter with id %s ", id));
         }
 
         return optional.get();
