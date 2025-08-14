@@ -9,8 +9,8 @@ public enum JobType {
     THIEF("25% of strength + 100% of dexterity + 25% of intelligence", "80% of dexterity"),
     MAGE("20% of strength + 20% of dexterity + 120% of intelligence", "40% of dexterity + 10% of strength");
 
-    private String attackModifierDescription;
-    private String speedModifierDescription;
+    private final String attackModifierDescription;
+    private final String speedModifierDescription;
 
     JobType(String attackModifierDescription, String speedModifierDescription) {
         this.attackModifierDescription = attackModifierDescription;
