@@ -2,7 +2,7 @@
 
 ![classes.png](misc%2Fclasses.png)
 
-Hello, player!
+Hello, Player 1!
 This is the Neo Character API. It allows you to:
 * Create your own character, chosing between WARRIOR, MAGE and THIEF classes.
 * See your character's information and stats.
