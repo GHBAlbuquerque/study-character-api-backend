@@ -80,9 +80,8 @@ public class GameCharacter {
         this.characterStatus = CharacterStatus.ALIVE;
     }
 
-    public void takeDamage(Double damage){
-        final int damageInt = damage.intValue(); // convert Double → int
-        this.currentHealth -= damageInt;
+    public void takeDamage(Integer damage){// convert Double → int
+        this.currentHealth -= damage;
 
         if(this.currentHealth <= 0){
             this.currentHealth = 0;

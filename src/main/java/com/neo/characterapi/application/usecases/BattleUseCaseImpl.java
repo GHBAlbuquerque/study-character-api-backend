@@ -1,5 +1,6 @@
 package com.neo.characterapi.application.usecases;
 
+import com.neo.characterapi.application.exceptions.InvalidBattleException;
 import com.neo.characterapi.application.messages.BattleLogGenerator;
 import com.neo.characterapi.domain.entities.GameCharacter;
 import com.neo.characterapi.domain.interfaces.repositories.GameCharacterRepository;
@@ -25,16 +26,25 @@ public class BattleUseCaseImpl implements BattleUseCase {
     public BattleResult execute(Long firstCharacterId, Long secondCharacterId) {
         final GameCharacter character1 = getGameCharacterDetailsUseCase.execute(firstCharacterId);
         final GameCharacter character2 = getGameCharacterDetailsUseCase.execute(secondCharacterId);
+
+        if(isAnyCharacterDead(character1, character2)) {
+            throw new InvalidBattleException("One of the characters is dead, battle cannot continue.");
+        }
+
         final List<String> battleLog = new ArrayList<>();
         final Random random = new Random();
+
+        int round = 0;
+        GameCharacter winner = null;
+        GameCharacter loser = null;
 
         while(character1.isAlive() && character2.isAlive()) {
             battleLog.add(BattleLogGenerator.generateBattleInitiatedLog(character1, character2));
 
             GameCharacter first, second;
 
-            double speed1 = random.nextDouble() * character1.getSpeed();
-            double speed2 = random.nextDouble() * character2.getSpeed();
+            int speed1 = (int) Math.ceil(random.nextDouble() * character1.getSpeed());
+            int speed2 = (int) Math.ceil(random.nextDouble() * character2.getSpeed());
 
             do {
                 if (speed1 > speed2) {
@@ -49,20 +59,38 @@ public class BattleUseCaseImpl implements BattleUseCase {
                 break;
             } while (true);
 
+            initiateTurn(first, second, battleLog, random);
+            if(!second.isAlive()) {
+                battleLog.add(BattleLogGenerator.generateBattleFinishedLog(first));
+                winner = first;
+                loser = second;
+                break;
+            }
 
+            initiateTurn(second, first, battleLog, random);
+            if(!first.isAlive()) {
+                battleLog.add(BattleLogGenerator.generateBattleFinishedLog(second));
+                winner = second;
+                loser = first;
+                break;
+            }
 
+            round++;
         }
 
-        //UPDATE CHARS IN THE REPOSITORY
-        //RETURN BATTLE RESULT
-        return null;
+        return new BattleResult(winner, loser, battleLog);
     }
 
-    private void attack(GameCharacter attacker, GameCharacter attacked, List<String> battleLog, Random random) {
-        double damage = random.nextDouble() * attacker.getAttack();
-        attacked.takeDamage(damage);
+    private Boolean isAnyCharacterDead(GameCharacter character1, GameCharacter character2) {
+        return character1.isDead() || character2.isDead();
+    }
 
-        battleLog.add(BattleLogGenerator.generateAttackLog(attacker, attacked, damage));
+    private void initiateTurn(GameCharacter attacker, GameCharacter attacked, List<String> battleLog, Random random) {
+        double damage = random.nextDouble() * attacker.getAttack();
+        int damageRounded = (int) Math.ceil(damage);
+        attacked.takeDamage(damageRounded);
+
+        battleLog.add(BattleLogGenerator.generateAttackLog(attacker, attacked, damageRounded));
     }
 
 }

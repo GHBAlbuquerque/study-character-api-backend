@@ -59,7 +59,7 @@ public class ExceptionControllerHandler extends ResponseEntityExceptionHandler {
                 ex.getMessage(),
                 HttpStatus.NOT_FOUND.value(),
                 new Date(),
-                null);
+                new HashMap<>());
 
         return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
     }
@@ -74,7 +74,21 @@ public class ExceptionControllerHandler extends ResponseEntityExceptionHandler {
                 ex.getMessage(),
                 HttpStatus.BAD_REQUEST.value(),
                 new Date(),
-                null);
+                new HashMap<>());
+
+        return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = {InvalidBattleException.class})
+    public ResponseEntity<ExceptionDetails> resourceException(InvalidBattleException ex, WebRequest request) {
+
+        final var message = new ExceptionDetails(
+                "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+                "There was a problem with the battle. Try again with different values.",
+                ex.getMessage(),
+                HttpStatus.BAD_REQUEST.value(),
+                new Date(),
+                new HashMap<>());
 
         return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
     }
@@ -93,7 +107,7 @@ public class ExceptionControllerHandler extends ResponseEntityExceptionHandler {
                 "Unindentified error.",
                 status.value(),
                 new Date(),
-                null);
+                new HashMap<>());
 
         return handleExceptionInternal(ex, message, new HttpHeaders(), status, request);
     }

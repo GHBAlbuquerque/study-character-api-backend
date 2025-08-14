@@ -4,7 +4,7 @@ import com.neo.characterapi.domain.entities.GameCharacter;
 
 public class BattleLogGenerator {
 
-    public static final String BATTLE_INITIATED = "Battle between %s (%s) - <%s> HP and %s (%s) - <%s> HP begins!";
+    public static final String BATTLE_INITIATED = "Battle between %s (%s)-<%s> HP and %s (%s)-<%s> HP begins!";
     public static final String SPEED_DRAW = "%s <%s> speed was faster than %s <%s> speed and will begin this round.";
     public static final String ATTACK_CHAR = "%s attacks %s for <%s>, %s has <%s> HP remaining.";
     public static final String BATTLE_FINISHED = "%s wins the battle! %s still has <%s> HP remaining!";
@@ -19,7 +19,7 @@ public class BattleLogGenerator {
                 character2.getCurrentHealth());
     }
 
-    public static String generateSpeedDrawLog(GameCharacter faster, Double speed1, GameCharacter slower, Double speed2) {
+    public static String generateSpeedDrawLog(GameCharacter faster, Integer speed1, GameCharacter slower, Integer speed2) {
         return String.format(BattleLogGenerator.SPEED_DRAW,
                 faster.getName(),
                 speed1,
@@ -27,7 +27,7 @@ public class BattleLogGenerator {
                 speed2);
     }
 
-    public static String generateAttackLog(GameCharacter attacker, GameCharacter defender, Double damage) {
+    public static String generateAttackLog(GameCharacter attacker, GameCharacter defender, Integer damage) {
         return String.format(BattleLogGenerator.ATTACK_CHAR,
                 attacker.getName(),
                 defender.getName(),

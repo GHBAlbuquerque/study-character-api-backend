@@ -1,6 +1,7 @@
 package com.neo.characterapi.application.exceptions.model;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
