@@ -27,7 +27,7 @@ Access the Swagger UI at [http://localhost:8080/swagger-ui/index.html](http://lo
 ## 🏛️ Architecture
 
 ```
-📁 study.notification
+📁 com.neo.characaterapi
 ├── 📁 adapters
 │   └── 📁 controllers              # 🔹 Controllers – REST endpoints
 │   └── 📁 dto                      # 🔹 DTOs
@@ -72,7 +72,8 @@ Access the Swagger UI at [http://localhost:8080/swagger-ui/index.html](http://lo
 3. Install dependencies and build the app:
 
 ```bash
-mvn clean package 
+mvn clean package
+mvn clean install 
 ```
 
 4. Run the app via Maven or directly from the main class `CharacterApplication`:
@@ -86,7 +87,10 @@ mvn clean package
 - API Base URL: [http://localhost:8080](http://localhost:8080)
 
 5. Access the Swagger UI at [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html) to see endpoints and payloads
----
+
+6. To run tests, run `mvn test` or click 'Run Tests in Java' directly from the `/src/test/java` folder
+
+--
 
 ## Business Rules
 
