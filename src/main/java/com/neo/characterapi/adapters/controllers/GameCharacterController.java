@@ -33,7 +33,7 @@ public class GameCharacterController {
         this.getCharacterDetailsUseCase = getCharacterDetailsUseCase;
     }
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<CreatedGameCharacterDto> createCharacter(@RequestBody @Valid CreateGameCharacterDto request) throws URISyntaxException {
         final GameCharacter character = GameCharacterMapper.toGameCharacter(request);
         final GameCharacter result = createGameCharacterUseCase.execute(character);
