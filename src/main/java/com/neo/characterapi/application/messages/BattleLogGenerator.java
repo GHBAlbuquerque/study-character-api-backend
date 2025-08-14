@@ -12,10 +12,10 @@ public class BattleLogGenerator {
     public static String generateBattleInitiatedLog(GameCharacter character1, GameCharacter character2) {
         return String.format(BattleLogGenerator.BATTLE_INITIATED,
                 character1.getName(),
-                character1.getJob(),
+                character1.getJobName(),
                 character1.getCurrentHealth(),
                 character2.getName(),
-                character2.getJob(),
+                character2.getJobName(),
                 character2.getCurrentHealth());
     }
 

@@ -18,7 +18,7 @@ class BattleControllerTest {
     @LocalServerPort
     private int port;
 
-    @Test
+    @Test //TODO
     void shouldReturnBattleResult() {
         final var request = new CreateGameCharacterDto("Warrior_2", JobType.WARRIOR.name());
         final var request2 = new CreateGameCharacterDto("Mage_2", JobType.MAGE.name());

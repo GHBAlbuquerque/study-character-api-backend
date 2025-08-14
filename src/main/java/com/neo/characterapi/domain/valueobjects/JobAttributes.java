@@ -1,7 +1,5 @@
 package com.neo.characterapi.domain.valueobjects;
 
-import com.neo.characterapi.domain.enums.JobType;
-
 public class JobAttributes {
 
     private Integer health;
@@ -16,20 +14,11 @@ public class JobAttributes {
         this.intelligence = intelligence;
     }
 
-    public Double calculateAttack(JobType jobtype) {
-        return switch (jobtype) {
-            case WARRIOR -> strength * 0.8 + dexterity * 0.2;
-            case THIEF -> strength * 0.25 + dexterity + intelligence * 0.25;
-            case MAGE -> strength * 0.20 + dexterity * 0.20 + intelligence * 1.20;
-        };
-    }
-
-    public Double calculateSpeed(JobType jobtype) {
-        return switch (jobtype) {
-            case WARRIOR -> dexterity * 0.6 + intelligence * 0.2;
-            case THIEF -> dexterity * 0.8;
-            case MAGE -> dexterity * 0.4 + strength * 0.1;
-        };
+    public JobAttributes(JobAttributes jobAttributes) {
+        this.health = jobAttributes.getHealth();
+        this.strength = jobAttributes.getStrength();
+        this.dexterity = jobAttributes.getDexterity();
+        this.intelligence = jobAttributes.getIntelligence();
     }
 
     public Integer getHealth() {

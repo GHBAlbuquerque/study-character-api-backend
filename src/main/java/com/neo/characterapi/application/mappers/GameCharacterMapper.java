@@ -4,21 +4,19 @@ import com.neo.characterapi.adapters.dto.request.CreateGameCharacterDto;
 import com.neo.characterapi.adapters.dto.response.CreatedGameCharacterDto;
 import com.neo.characterapi.adapters.dto.response.DetailedGameCharacterDto;
 import com.neo.characterapi.adapters.dto.response.SimpleGameCharacterDto;
+import com.neo.characterapi.application.strategy.JobStrategyFactory;
 import com.neo.characterapi.domain.entities.GameCharacter;
 import com.neo.characterapi.domain.enums.JobType;
+import com.neo.characterapi.domain.valueobjects.Job;
 import com.neo.characterapi.domain.valueobjects.JobAttributes;
 
 public class GameCharacterMapper {
 
     public static GameCharacter toGameCharacter(CreateGameCharacterDto createDto) {
         final JobType jobType = JobType.valueOf(createDto.job().toUpperCase());
-        final JobAttributes baseAttributes = jobType.getBaseAttributes();
+        final Job job = JobStrategyFactory.createJob(jobType);
 
-        return new GameCharacter(createDto.name(), jobType,
-                new JobAttributes(baseAttributes.getHealth(),
-                        baseAttributes.getStrength(),
-                        baseAttributes.getDexterity(),
-                        baseAttributes.getIntelligence()));
+        return new GameCharacter(createDto.name(), job);
     }
 
     public static CreatedGameCharacterDto toCreatedGameCharacterDto(GameCharacter character) {

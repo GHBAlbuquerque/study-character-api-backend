@@ -2,30 +2,22 @@ package com.neo.characterapi.domain.entities;
 
 import com.neo.characterapi.domain.enums.CharacterStatus;
 import com.neo.characterapi.domain.enums.JobType;
+import com.neo.characterapi.domain.valueobjects.Job;
 import com.neo.characterapi.domain.valueobjects.JobAttributes;
 
 public class GameCharacter {
 
     private Long id;
     private String name;
-    private JobType jobType;
+    private Job job;
     private JobAttributes jobAttributes;
     private CharacterStatus characterStatus;
     private Integer currentHealth;
 
-    public GameCharacter(Long id, String name, JobType jobType, JobAttributes jobAttributes) {
-        this.id = id;
+    public GameCharacter(String name, Job job) {
         this.name = name;
-        this.jobType = jobType;
-        this.jobAttributes = jobAttributes;
-        this.characterStatus = CharacterStatus.ALIVE;
-        this.currentHealth = jobAttributes.getHealth();
-    }
-
-    public GameCharacter(String name, JobType jobType, JobAttributes jobAttributes) {
-        this.name = name;
-        this.jobType = jobType;
-        this.jobAttributes = jobAttributes;
+        this.job = job;
+        this.jobAttributes = new JobAttributes(job.getBaseAttributes());
         this.characterStatus = CharacterStatus.ALIVE;
         this.currentHealth = jobAttributes.getHealth();
     }
@@ -43,11 +35,11 @@ public class GameCharacter {
     }
 
     public JobType getJobType() {
-        return jobType;
+        return job.getJobType();
     }
 
-    public String getJob() {
-        return jobType.name();
+    public String getJobName() {
+        return job.getJobType().name();
     }
 
     public JobAttributes getJobAttributes() {
@@ -90,10 +82,10 @@ public class GameCharacter {
     }
 
     public Double getSpeed() {
-        return this.getJobAttributes().calculateSpeed(this.getJobType());
+        return this.job.calculateSpeed(this.getJobAttributes());
     }
 
     public Double getAttack() {
-        return this.getJobAttributes().calculateAttack(this.getJobType());
+        return job.calculateAttack(this.getJobAttributes());
     }
 }
