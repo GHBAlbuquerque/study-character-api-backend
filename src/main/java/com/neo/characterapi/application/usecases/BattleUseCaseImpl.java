@@ -9,6 +9,7 @@ import com.neo.characterapi.domain.valueobjects.BattleResult;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class BattleUseCaseImpl implements BattleUseCase {
@@ -21,12 +22,12 @@ public class BattleUseCaseImpl implements BattleUseCase {
 
     @Override
     public BattleResult execute(Long firstCharacterId, Long secondCharacterId) {
-        if (firstCharacterId.equals(secondCharacterId)) {
-            throw new InvalidBattleException("Characters cannot be the same. Please chose a different opponent.");
-        }
-
         final GameCharacter character1 = getGameCharacterDetailsUseCase.execute(firstCharacterId);
         final GameCharacter character2 = getGameCharacterDetailsUseCase.execute(secondCharacterId);
+
+        if (Objects.equals(firstCharacterId, secondCharacterId)) {
+            throw new InvalidBattleException("Characters cannot be the same. Please chose a different opponent.");
+        }
 
         if (isAnyCharacterDead(character1, character2)) {
             throw new InvalidBattleException("One of the characters is dead, battle cannot continue.");
@@ -74,6 +75,14 @@ public class BattleUseCaseImpl implements BattleUseCase {
     }
 
     private List<GameCharacter> drawSpeed(GameCharacter character1, GameCharacter character2, List<String> battleLog, Random random, Integer round) {
+        if (character1.getSpeed() == 0 && character2.getSpeed() == 0) {
+            if (random.nextBoolean()) {
+                return List.of(character1, character2);
+            } else {
+                return List.of(character2, character1);
+            }
+        }
+
         while (true) {
             int rolledSpeed1 = (int) Math.ceil(random.nextDouble() * character1.getSpeed());
             int rolledSpeed2 = (int) Math.ceil(random.nextDouble() * character2.getSpeed());
@@ -94,7 +103,7 @@ public class BattleUseCaseImpl implements BattleUseCase {
 
     private void initiateTurn(GameCharacter attacker, GameCharacter attacked, List<String> battleLog, Random random) {
         double damage = random.nextDouble() * attacker.getAttack();
-        int damageRounded = (int) Math.ceil(damage);
+        int damageRounded = (int) Math.round(damage);
         attacked.takeDamage(damageRounded);
 
         battleLog.add(BattleLogGenerator.generateAttackLog(attacker, attacked, damageRounded));
