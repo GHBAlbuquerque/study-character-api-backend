@@ -10,6 +10,20 @@ This is the Neo Character API. It allows you to:
 * Run an exciting battle between two of your characters.
 
 
+## 🎮 Endpoints
+
+#### 🧝  Characters:
+
+- '/characters' (POST) - Create a new character
+- '/characters' (GET) - List all characters
+- '/characters/{id}' (GET) - Get character details
+
+#### ⚔️ Battles:
+
+- '/battles' (POST) - Create a new battle 
+
+Access the Swagger UI at [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html) to see endpoints and payloads.
+
 ## 🏛️ Architecture
 
 ```
