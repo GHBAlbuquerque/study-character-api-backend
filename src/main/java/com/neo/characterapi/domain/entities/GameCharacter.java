@@ -94,6 +94,6 @@ public class GameCharacter {
     }
 
     public Double getAttack(){
-        return this.getJobAttributes().calculateSpeed(this.getJobType());
+        return this.getJobAttributes().calculateAttack(this.getJobType());
     }
 }
