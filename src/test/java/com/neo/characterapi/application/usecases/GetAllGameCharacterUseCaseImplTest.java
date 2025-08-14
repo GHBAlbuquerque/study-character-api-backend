@@ -45,7 +45,6 @@ class GetAllGameCharacterUseCaseImplTest {
     }
 
     private GameCharacter createCharacter(String name) {
-        final var character = new GameCharacter(name, JobType.WARRIOR, JobType.WARRIOR.getBaseAttributes());
-        return character;
+        return new GameCharacter(name, JobType.WARRIOR, JobType.WARRIOR.getBaseAttributes());
     }
 }

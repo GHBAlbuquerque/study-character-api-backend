@@ -42,7 +42,6 @@ class CreateGameCharacterUseCaseImplTest {
     }
 
     private GameCharacter createCharacter(String name) {
-        final var character = new GameCharacter(name, JobType.THIEF, JobType.THIEF.getBaseAttributes());
-        return character;
+        return new GameCharacter(name, JobType.THIEF, JobType.THIEF.getBaseAttributes());
     }
 }

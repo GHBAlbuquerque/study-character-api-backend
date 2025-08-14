@@ -72,7 +72,6 @@ class InMemoryGameCharacterRepositoryTest {
     }
 
     private GameCharacter createCharacter(String name) {
-        final var character = new GameCharacter(name, JobType.MAGE, JobType.MAGE.getBaseAttributes());
-        return character;
+        return new GameCharacter(name, JobType.MAGE, JobType.MAGE.getBaseAttributes());
     }
 }
