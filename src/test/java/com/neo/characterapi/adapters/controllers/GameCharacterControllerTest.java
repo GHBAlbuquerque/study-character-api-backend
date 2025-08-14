@@ -18,7 +18,7 @@ class GameCharacterControllerTest {
 
     @Test
     void createCharacter_ShouldReturnCreatedCharacter() {
-        final var request = new CreateGameCharacterDto("Hero", JobType.WARRIOR.name());
+        final var request = new CreateGameCharacterDto("New_Hero", JobType.WARRIOR.name());
 
         given()
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -28,7 +28,7 @@ class GameCharacterControllerTest {
                 .post("/characters")
                 .then()
                 .statusCode(201)
-                .body("name", equalTo("Hero"));
+                .body("name", equalTo("New_Hero"));
     }
 
     @Test
@@ -99,9 +99,7 @@ class GameCharacterControllerTest {
                         .when()
                         .post("/characters")
                         .then()
-                        .statusCode(201)
-                        .extract()
-                        .path("id");
+                        .statusCode(201);
 
         given()
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
