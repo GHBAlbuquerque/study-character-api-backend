@@ -24,6 +24,10 @@ public class BattleUseCaseImpl implements BattleUseCase {
 
     @Override
     public BattleResult execute(Long firstCharacterId, Long secondCharacterId) {
+        if(firstCharacterId.equals(secondCharacterId)) {
+            throw new InvalidBattleException("Characters cannot be the same. Please chose a different opponent.");
+        }
+
         final GameCharacter character1 = getGameCharacterDetailsUseCase.execute(firstCharacterId);
         final GameCharacter character2 = getGameCharacterDetailsUseCase.execute(secondCharacterId);
 
@@ -34,29 +38,30 @@ public class BattleUseCaseImpl implements BattleUseCase {
         final List<String> battleLog = new ArrayList<>();
         final Random random = new Random();
 
-        int round = 0;
+        int round = 1;
         GameCharacter winner = null;
         GameCharacter loser = null;
 
+        battleLog.add(BattleLogGenerator.generateBattleInitiatedLog(character1, character2));
         while(character1.isAlive() && character2.isAlive()) {
-            battleLog.add(BattleLogGenerator.generateBattleInitiatedLog(character1, character2));
 
             GameCharacter first, second;
 
-            int speed1 = (int) Math.ceil(random.nextDouble() * character1.getSpeed());
-            int speed2 = (int) Math.ceil(random.nextDouble() * character2.getSpeed());
-
             do {
+                int speed1 = (int) Math.ceil(random.nextDouble() * character1.getSpeed());
+                int speed2 = (int) Math.ceil(random.nextDouble() * character2.getSpeed());
+
                 if (speed1 > speed2) {
                     first = character1;
                     second = character2;
-                    battleLog.add(BattleLogGenerator.generateSpeedDrawLog(first, speed1, second, speed2));
-                } else {
+                    battleLog.add(BattleLogGenerator.generateSpeedDrawLog(first, speed1, second, speed2, round));
+                    break;
+                } else if (speed2 > speed1) {
                     first = character2;
                     second = character1;
-                    battleLog.add(BattleLogGenerator.generateSpeedDrawLog(first, speed2, second, speed1));
+                    battleLog.add(BattleLogGenerator.generateSpeedDrawLog(first, speed2, second, speed1, round));
+                    break;
                 }
-                break;
             } while (true);
 
             initiateTurn(first, second, battleLog, random);
