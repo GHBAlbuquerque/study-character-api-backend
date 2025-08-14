@@ -85,16 +85,18 @@ mvn clean package
 
 - API Base URL: [http://localhost:8080](http://localhost:8080)
 
-4. Access the Swagger UI at [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html) to see endpoints and payloads
+5. Access the Swagger UI at [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html) to see endpoints and payloads
 ---
 
-## Notes
+## Business Rules
 
 - The app validates name length and limits the use of charcaters to letters and underscore (_)
-- The app only accepts characters with the job classes listed above
+- Character names must be unique
+- Characters can only be created with the job classes listed above
 - Battles can only be fought between two characters that are alive
-- Tests cover controllers, facades, gateways, use cases and senders.
+- Battles can only be fought between two different characters
+- Tests cover controllers, repositories and use cases.
 
 ---
 
-Made with ☕  by @GHBAlbuquerque
+Made with ☕  by [@GHBAlbuquerque](https://github.com/GHBAlbuquerque)
