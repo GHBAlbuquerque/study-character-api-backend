@@ -40,26 +40,12 @@ public class BattleUseCaseImpl implements BattleUseCase {
         GameCharacter loser = null;
 
         battleLog.add(BattleLogGenerator.generateBattleInitiatedLog(character1, character2));
+
         while (character1.isAlive() && character2.isAlive()) {
 
-            GameCharacter first, second;
-
-            do {
-                int speed1 = (int) Math.ceil(random.nextDouble() * character1.getSpeed());
-                int speed2 = (int) Math.ceil(random.nextDouble() * character2.getSpeed());
-
-                if (speed1 > speed2) {
-                    first = character1;
-                    second = character2;
-                    battleLog.add(BattleLogGenerator.generateSpeedDrawLog(first, speed1, second, speed2, round));
-                    break;
-                } else if (speed2 > speed1) {
-                    first = character2;
-                    second = character1;
-                    battleLog.add(BattleLogGenerator.generateSpeedDrawLog(first, speed2, second, speed1, round));
-                    break;
-                }
-            } while (true);
+            List<GameCharacter> attackOrder = drawSpeed(character1, character2, battleLog, random, round);
+            GameCharacter first = attackOrder.get(0);
+            GameCharacter second = attackOrder.get(1);
 
             initiateTurn(first, second, battleLog, random);
             if (!second.isAlive()) {
@@ -83,8 +69,32 @@ public class BattleUseCaseImpl implements BattleUseCase {
         return new BattleResult(winner, loser, battleLog);
     }
 
-    private Boolean isAnyCharacterDead(GameCharacter character1, GameCharacter character2) {
+    private boolean isAnyCharacterDead(GameCharacter character1, GameCharacter character2) {
         return character1.isDead() || character2.isDead();
+    }
+
+    private List<GameCharacter> drawSpeed(GameCharacter character1, GameCharacter character2,List<String> battleLog, Random random, Integer round) {
+        List<GameCharacter> attackOrder = new ArrayList<>();
+
+        do {
+            int speed1 = (int) Math.ceil(random.nextDouble() * character1.getSpeed());
+            int speed2 = (int) Math.ceil(random.nextDouble() * character2.getSpeed());
+
+            if (speed1 > speed2) {
+                attackOrder.add(character1);
+                attackOrder.add(character2);
+                battleLog.add(BattleLogGenerator.generateSpeedDrawLog(character1, speed1, character2, speed2, round));
+                break;
+            } else if (speed2 > speed1) {
+                attackOrder.add(character2);
+                attackOrder.add(character1);
+                battleLog.add(BattleLogGenerator.generateSpeedDrawLog(character2, speed2, character1, speed1, round));
+                break;
+            }
+
+        } while (true);
+
+        return attackOrder;
     }
 
     private void initiateTurn(GameCharacter attacker, GameCharacter attacked, List<String> battleLog, Random random) {
