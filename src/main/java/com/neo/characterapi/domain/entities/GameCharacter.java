@@ -5,6 +5,8 @@ import com.neo.characterapi.domain.enums.JobType;
 import com.neo.characterapi.domain.valueobjects.Job;
 import com.neo.characterapi.domain.valueobjects.JobAttributes;
 
+import java.util.Objects;
+
 public class GameCharacter {
 
     private Long id;
@@ -87,5 +89,17 @@ public class GameCharacter {
 
     public Double getAttack() {
         return job.calculateAttack(this.getJobAttributes());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof GameCharacter that)) return false;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

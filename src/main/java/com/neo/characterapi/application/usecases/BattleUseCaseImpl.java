@@ -73,28 +73,23 @@ public class BattleUseCaseImpl implements BattleUseCase {
         return character1.isDead() || character2.isDead();
     }
 
-    private List<GameCharacter> drawSpeed(GameCharacter character1, GameCharacter character2,List<String> battleLog, Random random, Integer round) {
-        List<GameCharacter> attackOrder = new ArrayList<>();
+    private List<GameCharacter> drawSpeed(GameCharacter character1, GameCharacter character2, List<String> battleLog, Random random, Integer round) {
+        while (true) {
+            int rolledSpeed1 = (int) Math.ceil(random.nextDouble() * character1.getSpeed());
+            int rolledSpeed2 = (int) Math.ceil(random.nextDouble() * character2.getSpeed());
 
-        do {
-            int speed1 = (int) Math.ceil(random.nextDouble() * character1.getSpeed());
-            int speed2 = (int) Math.ceil(random.nextDouble() * character2.getSpeed());
+            if (rolledSpeed1 != rolledSpeed2) {
+                GameCharacter first = rolledSpeed1 > rolledSpeed2 ? character1 : character2;
+                GameCharacter second = (first.equals(character1)) ? character2 : character1;
 
-            if (speed1 > speed2) {
-                attackOrder.add(character1);
-                attackOrder.add(character2);
-                battleLog.add(BattleLogGenerator.generateSpeedDrawLog(character1, speed1, character2, speed2, round));
-                break;
-            } else if (speed2 > speed1) {
-                attackOrder.add(character2);
-                attackOrder.add(character1);
-                battleLog.add(BattleLogGenerator.generateSpeedDrawLog(character2, speed2, character1, speed1, round));
-                break;
+                int firstSpeed = Math.max(rolledSpeed1, rolledSpeed2);
+                int secondSpeed = Math.min(rolledSpeed1, rolledSpeed2);
+
+                battleLog.add(BattleLogGenerator.generateSpeedDrawLog(first, firstSpeed, second, secondSpeed, round));
+
+                return List.of(first, second);
             }
-
-        } while (true);
-
-        return attackOrder;
+        }
     }
 
     private void initiateTurn(GameCharacter attacker, GameCharacter attacked, List<String> battleLog, Random random) {
