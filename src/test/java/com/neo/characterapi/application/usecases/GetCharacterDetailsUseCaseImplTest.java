@@ -1,6 +1,7 @@
 package com.neo.characterapi.application.usecases;
 
 import com.neo.characterapi.application.exceptions.CharacterNotFoundException;
+import com.neo.characterapi.application.strategy.JobStrategyFactory;
 import com.neo.characterapi.domain.entities.GameCharacter;
 import com.neo.characterapi.domain.enums.JobType;
 import com.neo.characterapi.domain.interfaces.repositories.GameCharacterRepository;
@@ -12,8 +13,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class GetCharacterDetailsUseCaseImplTest {
@@ -42,6 +44,6 @@ class GetCharacterDetailsUseCaseImplTest {
     }
 
     private GameCharacter createCharacter(String name) {
-        return new GameCharacter(name, JobType.THIEF, JobType.THIEF.getBaseAttributes());
+        return new GameCharacter(name, JobStrategyFactory.createJob(JobType.THIEF));
     }
 }

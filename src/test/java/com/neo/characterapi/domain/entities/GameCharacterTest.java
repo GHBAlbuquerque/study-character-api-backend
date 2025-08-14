@@ -1,11 +1,13 @@
 package com.neo.characterapi.domain.entities;
 
+import com.neo.characterapi.application.strategy.JobStrategyFactory;
 import com.neo.characterapi.domain.enums.JobType;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(MockitoExtension.class)
 class GameCharacterTest {
@@ -57,18 +59,18 @@ class GameCharacterTest {
     @Test
     void getSpeed_ShouldReturnJobAttributeSpeed() {
         final var character = createCharacter("Hero", JobType.WARRIOR);
-        final var expected = character.getJobAttributes().calculateSpeed(JobType.WARRIOR);
+        final var expected = JobStrategyFactory.createJob(JobType.WARRIOR).calculateSpeed(character.getJobAttributes());
         assertEquals(expected, character.getSpeed());
     }
 
     @Test
     void getAttack_ShouldReturnJobAttributeAttack() {
         final var character = createCharacter("Mage", JobType.MAGE);
-        final var expected = character.getJobAttributes().calculateAttack(JobType.MAGE);
+        final var expected = JobStrategyFactory.createJob(JobType.MAGE).calculateAttack(character.getJobAttributes());
         assertEquals(expected, character.getAttack());
     }
 
     private GameCharacter createCharacter(String name, JobType jobType) {
-        return new GameCharacter(name, jobType, jobType.getBaseAttributes());
+        return new GameCharacter(name, JobStrategyFactory.createJob(jobType));
     }
 }

@@ -1,6 +1,7 @@
 package com.neo.characterapi.application.usecases;
 
 import com.neo.characterapi.application.exceptions.InvalidBattleException;
+import com.neo.characterapi.application.strategy.JobStrategyFactory;
 import com.neo.characterapi.domain.entities.GameCharacter;
 import com.neo.characterapi.domain.enums.JobType;
 import com.neo.characterapi.domain.interfaces.repositories.GameCharacterRepository;
@@ -12,7 +13,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class BattleUseCaseImplTest {
@@ -58,7 +59,7 @@ class BattleUseCaseImplTest {
     }
 
     private GameCharacter createCharacter(String name, JobType jobType) {
-        return new GameCharacter(name, jobType, jobType.getBaseAttributes());
+        return new GameCharacter(name, JobStrategyFactory.createJob(jobType));
     }
 
 }

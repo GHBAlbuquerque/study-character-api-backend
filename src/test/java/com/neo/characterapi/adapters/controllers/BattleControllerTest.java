@@ -2,9 +2,9 @@ package com.neo.characterapi.adapters.controllers;
 
 import com.neo.characterapi.adapters.dto.request.BattleRequestDto;
 import com.neo.characterapi.adapters.dto.request.CreateGameCharacterDto;
+import com.neo.characterapi.application.strategy.JobStrategyFactory;
 import com.neo.characterapi.domain.entities.GameCharacter;
 import com.neo.characterapi.domain.enums.JobType;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -18,7 +18,8 @@ class BattleControllerTest {
     @LocalServerPort
     private int port;
 
-    @Test //TODO
+    @Test
+        //TODO
     void shouldReturnBattleResult() {
         final var request = new CreateGameCharacterDto("Warrior_2", JobType.WARRIOR.name());
         final var request2 = new CreateGameCharacterDto("Mage_2", JobType.MAGE.name());
@@ -114,6 +115,6 @@ class BattleControllerTest {
     }
 
     private GameCharacter createCharacter(String name, JobType jobType) {
-        return new GameCharacter(name, jobType, jobType.getBaseAttributes());
+        return new GameCharacter(name, JobStrategyFactory.createJob(jobType));
     }
 }

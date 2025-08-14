@@ -8,7 +8,8 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.notNullValue;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class GameCharacterControllerTest {
@@ -93,13 +94,13 @@ class GameCharacterControllerTest {
 
 
         given()
-                        .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .port(port)
-                        .body(request)
-                        .when()
-                        .post("/characters")
-                        .then()
-                        .statusCode(201);
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .port(port)
+                .body(request)
+                .when()
+                .post("/characters")
+                .then()
+                .statusCode(201);
 
         given()
                 .contentType(MediaType.APPLICATION_JSON_VALUE)

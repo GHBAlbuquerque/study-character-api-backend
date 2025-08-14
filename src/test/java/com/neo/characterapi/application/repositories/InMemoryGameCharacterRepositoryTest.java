@@ -1,12 +1,12 @@
 package com.neo.characterapi.application.repositories;
 
+import com.neo.characterapi.application.strategy.JobStrategyFactory;
 import com.neo.characterapi.domain.entities.GameCharacter;
 import com.neo.characterapi.domain.enums.JobType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -72,6 +72,6 @@ class InMemoryGameCharacterRepositoryTest {
     }
 
     private GameCharacter createCharacter(String name) {
-        return new GameCharacter(name, JobType.MAGE, JobType.MAGE.getBaseAttributes());
+        return new GameCharacter(name, JobStrategyFactory.createJob(JobType.MAGE));
     }
 }
