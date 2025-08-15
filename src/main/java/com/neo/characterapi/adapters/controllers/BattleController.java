@@ -5,6 +5,7 @@ import com.neo.characterapi.adapters.dto.response.BattleResultDto;
 import com.neo.characterapi.application.mappers.BattleMapper;
 import com.neo.characterapi.domain.interfaces.usecases.BattleUseCase;
 import com.neo.characterapi.domain.valueobjects.BattleResult;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +25,7 @@ public class BattleController {
     }
 
     @PostMapping
-    public ResponseEntity<BattleResultDto> battle(@RequestBody BattleRequestDto battleRequest) {
+    public ResponseEntity<BattleResultDto> battle(@RequestBody @Valid BattleRequestDto battleRequest) {
         final BattleResult battleResult = battleUseCase.execute(battleRequest.firstCharacterId(), battleRequest.secondCharacterId());
 
         return ResponseEntity.ok(BattleMapper.toBattleResultDto(battleResult));

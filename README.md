@@ -22,7 +22,9 @@ This is the Neo Character API. It allows you to:
 
 - '/battles' (POST) - Create a new battle 
 
-Access the Swagger UI at [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html) to see endpoints and payloads.
+* Access the Swagger UI at [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html) to see endpoints and payloads and also test the application.
+
+* You can also import the json from 'misc' folder to test the application using Postman.
 
 ## 🏛️ Architecture
 

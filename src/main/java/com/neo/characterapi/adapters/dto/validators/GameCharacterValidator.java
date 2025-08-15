@@ -27,7 +27,11 @@ public class GameCharacterValidator implements ConstraintValidator<ValidGameChar
     }
 
     private Boolean validateName(String name, ConstraintValidatorContext context) {
-        if (Objects.isNull(name)) return false;
+        if (Objects.isNull(name)) {
+            context.buildConstraintViolationWithTemplate("Name cannot be null").addConstraintViolation();
+            return false;
+        }
+
 
         if (!name.matches(REGEX)) {
             context.buildConstraintViolationWithTemplate("Name must contain only letters or '_' (underscore) characters.").addConstraintViolation();

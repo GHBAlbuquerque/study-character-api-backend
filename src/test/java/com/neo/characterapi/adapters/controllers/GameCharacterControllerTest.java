@@ -75,6 +75,20 @@ class GameCharacterControllerTest {
     }
 
     @Test
+    void createCharacter_ShouldReturnErrorIfNullName() {
+        final var request = new CreateGameCharacterDto(null, JobType.WARRIOR.name());
+
+        given()
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .port(port)
+                .body(request)
+                .when()
+                .post("/characters")
+                .then()
+                .statusCode(400);
+    }
+
+    @Test
     void createCharacter_ShouldReturnErrorIfInvalidJob() {
         final var request = new CreateGameCharacterDto("White_Paladin", "PALADIN");
 

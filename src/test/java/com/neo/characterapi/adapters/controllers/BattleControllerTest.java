@@ -24,14 +24,18 @@ class BattleControllerTest {
     private Integer id2;
 
     private static String randomLetter() {
-        return String.valueOf((char) ('A' + new Random().nextInt(26)));
+        final StringBuilder random  = new StringBuilder(String.valueOf((char) ('A' + new Random().nextInt(26))));
+        random.append((char) ('A' + new Random().nextInt(26)));
+
+        return random.toString();
     }
+
 
     @BeforeEach
     void setup() {
 
-        final var request = new CreateGameCharacterDto("BattleWarrior_" + randomLetter(), JobType.WARRIOR.name());
-        final var request2 = new CreateGameCharacterDto("BattleMage_" + randomLetter(), JobType.MAGE.name());
+        final var request = new CreateGameCharacterDto("BttlWarrior_" + randomLetter(), JobType.WARRIOR.name());
+        final var request2 = new CreateGameCharacterDto("BttlMage_" + randomLetter(), JobType.MAGE.name());
 
         id1 = given()
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -84,6 +88,38 @@ class BattleControllerTest {
                 .path("detail");
 
         assert message.equals("Characters cannot be the same. Please chose a different opponent.");
+    }
+
+    @Test
+    void shouldReturnBadRequestWhenIdIsNull() {
+        final var message = given()
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .port(port)
+                .body(new BattleRequestDto(null, null))
+                .when()
+                .post("/battles")
+                .then()
+                .statusCode(400)
+                .extract()
+                .path("detail");
+
+        assert message.equals("Invalid arguments.");
+    }
+
+    @Test
+    void shouldReturnBadRequestWhenIdIsNegative() {
+        final var message = given()
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .port(port)
+                .body(new BattleRequestDto(-1L, -1L))
+                .when()
+                .post("/battles")
+                .then()
+                .statusCode(400)
+                .extract()
+                .path("detail");
+
+        assert message.equals("Invalid arguments.");
     }
 
     @Test
