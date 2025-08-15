@@ -29,7 +29,7 @@ This is the Neo Character API. It allows you to:
 ## 🏛️ Architecture
 
 ```
-📁 com.neo.characaterapi
+📁 com.neo.characterapi
 ├── 📁 adapters
 │   └── 📁 controllers              # 🔹 Controllers – REST endpoints
 │   └── 📁 dto                      # 🔹 DTOs
@@ -70,7 +70,7 @@ This is the Neo Character API. It allows you to:
 ### Starting the app
 
 1. Open the app on your preferred IDE (e.g., IntelliJ IDEA).
-2. Add the app as maven project by right clicking the `pom.xml` file.
+2. Add the app as maven project by right-clicking the `pom.xml` file.
 3. Install dependencies and build the app:
 
 ```bash
