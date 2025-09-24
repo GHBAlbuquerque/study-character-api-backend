@@ -1,9 +1,9 @@
-### Neo Character API
+### Character API
 
 ![classes.png](misc%2Fclasses.png)
 
 Hello, Player 1!
-This is the Neo Character API. It allows you to:
+This is the Character API. It allows you to:
 * Create your own character, chosing between WARRIOR, MAGE and THIEF classes.
 * See your character's information and stats.
 * See a list of all characters created.
@@ -29,7 +29,7 @@ This is the Neo Character API. It allows you to:
 ## 🏛️ Architecture
 
 ```
-📁 com.neo.characterapi
+📁 com.study.characterapi
 ├── 📁 adapters
 │   └── 📁 controllers              # 🔹 Controllers – REST endpoints
 │   └── 📁 dto                      # 🔹 DTOs

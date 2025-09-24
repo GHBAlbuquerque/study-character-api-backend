@@ -1,0 +1,266 @@
+{
+	"info": {
+		"_postman_id": "c5458b8c-6e2c-4c49-8df8-a0ed1c228e6a",
+		"name": "[Study] Character API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11898269"
+	},
+	"item": [
+		{
+			"name": "Create char WARRIOR",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"First\",\n    \"job\": \"WARRIOR\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/characters",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create char MAGE",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Second\",\n    \"job\": \"MAGE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/characters",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create char THIEF",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Third\",\n    \"job\": \"THIEF\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/characters",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create char invalid",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"875646\",\n    \"job\": \"THIEF\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/characters",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create char invalid Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"875646\",\n    \"job\": \"THIEF\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/characters",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Chars",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/characters",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Char",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/characters/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Battle",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstCharacterId\": 2,\n    \"secondCharacterId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/battles",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"battles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Battle invalid",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstCharacterId\": 2,\n    \"secondCharacterId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/battles",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"battles"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

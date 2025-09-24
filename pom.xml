@@ -8,11 +8,11 @@
 		<version>3.5.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.neo</groupId>
+	<groupId>com.study</groupId>
 	<artifactId>characterapi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>characterapi</name>
-	<description>Neo's Character API</description>
+	<description>Character API</description>
 	<url/>
 	<licenses>
 		<license/>
